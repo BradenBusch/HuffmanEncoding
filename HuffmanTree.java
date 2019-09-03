@@ -6,6 +6,7 @@ import java.util.*;
  */
 public class HuffmanTree {
 
+	// Node structure class
 	private class Node {
 		private Node left;
 		private char data;
@@ -22,15 +23,15 @@ public class HuffmanTree {
 
 	private Node root;
 	private Node current; // this value is changed by the move methods
-	public String[] paths = new String[128]; //Only using ascii characters 0 - 127
+	public String[] paths = new String[128]; // Only using ascii characters 0 - 127
 	
-	//Makes an empty HuffmanTree
+	// Makes an empty HuffmanTree
 	public HuffmanTree() {
 		root = null;
 		current = null;
 	}
 
-	//Makes a single node HuffmanTree
+	// Makes a single node HuffmanTree
 	public HuffmanTree(char d) {
 		root = new Node(null, d, null, null);
 		current = new Node(null, d, null, null);
@@ -89,7 +90,6 @@ public class HuffmanTree {
 	}
 
 	public void moveToLeft() {
-		// PRE: the current node is not a leaf
 		// change current to reference the left child of the current node
 		if (!atLeaf()) {
 			current = current.left;
@@ -97,7 +97,6 @@ public class HuffmanTree {
 	}
 
 	public void moveToRight() {
-		// PRE: the current node is not a leaf
 		// change current to reference the right child of the current node
 		if (!atLeaf()) {
 			current = current.right;
@@ -105,14 +104,13 @@ public class HuffmanTree {
 	}
 
 	public void moveToParent() {
-		// PRE: the current node is not the root
 		// change current to reference the parent of the current node
 		current = current.parent;
 	}
 
 	public boolean atRoot() {
 		// returns true if the current node is the root otherwise returns false
-		if (current.parent == null) {//may have to change
+		if (current.parent == null) {
 			return true;
 		}
 		else return false;
@@ -125,12 +123,14 @@ public class HuffmanTree {
 		else return false;
 	}
 
+	
+	// returns the data value in the node referenced by current
 	public char current() {
-		// returns the data value in the node referenced by current
 		return current.data;
 	}
 	
-	//Method to write the huffman tree in a post order pattern.
+	//@Override
+	// Write the HuffmanTree in the PostOrder string representation
 	public String toString() {
 		
 		return toString(root);
